@@ -9,11 +9,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.salman.greetinglibrary.Greeting
 import com.salman.greetinglibrary.ImageCard
-import com.salman.greetinglibrary.print
+import com.salman.greetinglibrary.startRegistration
 import com.salman.librarydemo.ui.theme.LibraryDemoTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,16 +25,19 @@ class MainActivity : ComponentActivity() {
             val painter = painterResource(id = R.drawable.flowers)
             val description = "Flowers"
             val title = "Flowers  are beautiful"
+            val context = LocalContext.current
 
             LibraryDemoTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    Column {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
                         Greeting("World!")
-                        Button(onClick = { print() }) {
-                            Text(text = "Print")
+                        Button(onClick = { startRegistration(context) }) {
+                            Text(text = "Go to registration")
                         }
                         ImageCard(
                             painter = painter,
