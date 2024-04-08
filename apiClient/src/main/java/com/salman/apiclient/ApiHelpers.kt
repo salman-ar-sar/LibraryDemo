@@ -4,28 +4,25 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-fun getPost(postId: Int): Post? {
+fun getPost(postId: Int, onSuccess: (Post?) -> Unit, onError: (t: Throwable) -> Unit) {
     val call = ApiClient.apiService.getPostById(postId)
-
-    var post: Post? = null
 
     call.enqueue(object : Callback<Post> {
         override fun onResponse(call: Call<Post>, response: Response<Post>) {
             if (response.isSuccessful) {
-                val postResponse = response.body()
-                print(post.toString() + "from API")
-
-                post = postResponse
                 // Handle the retrieved post data
+                val postResponse = response.body()
+
+                onSuccess(postResponse)
             } else {
                 // Handle error
+                onError(Exception(response.message()))
             }
         }
 
         override fun onFailure(call: Call<Post>, t: Throwable) {
             // Handle failure
+            onError(t)
         }
     })
-
-    return post
 }

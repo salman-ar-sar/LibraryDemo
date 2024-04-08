@@ -38,10 +38,12 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Greeting("World!")
                         Button(onClick = {
-
-                            val post = getPost(postId = 1) // Replace with actual required postId
-
-                            println(post.toString() + "Post")
+                            // Replace with actual required postId
+                            getPost(postId = 1, onSuccess = { post ->
+                                println(post.toString() + "Post")
+                            }, onError = {
+                                println("Error ${it.localizedMessage}")
+                            })
 
                             startRegistration(context)
                         }) {
