@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(project(":GreetingLibrary"))
+    implementation(project(":apiClient"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

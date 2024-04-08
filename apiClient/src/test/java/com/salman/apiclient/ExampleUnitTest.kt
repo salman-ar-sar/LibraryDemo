@@ -1,4 +1,4 @@
-//package com.salman.greetinglibrary
+//package com.salman.apiclient
 //
 //import org.junit.Test
 //

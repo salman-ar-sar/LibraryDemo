@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.salman.apiclient.getPost
 import com.salman.greetinglibrary.Greeting
 import com.salman.greetinglibrary.ImageCard
 import com.salman.greetinglibrary.startRegistration
@@ -36,7 +37,14 @@ class MainActivity : ComponentActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Greeting("World!")
-                        Button(onClick = { startRegistration(context) }) {
+                        Button(onClick = {
+
+                            val post = getPost(postId = 1) // Replace with actual required postId
+
+                            println(post.toString() + "Post")
+
+                            startRegistration(context)
+                        }) {
                             Text(text = "Go to registration")
                         }
                         ImageCard(

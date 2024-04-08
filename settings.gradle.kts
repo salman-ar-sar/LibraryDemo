@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Library Demo"
 include(":app")
 include(":GreetingLibrary")
+include(":apiClient")
