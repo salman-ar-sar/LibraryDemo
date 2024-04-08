@@ -18,6 +18,9 @@ import com.salman.greetinglibrary.Greeting
 import com.salman.greetinglibrary.ImageCard
 import com.salman.greetinglibrary.startRegistration
 import com.salman.librarydemo.ui.theme.LibraryDemoTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +30,7 @@ class MainActivity : ComponentActivity() {
             val description = "Flowers"
             val title = "Flowers  are beautiful"
             val context = LocalContext.current
+            val scope = CoroutineScope(Dispatchers.IO)
 
             LibraryDemoTheme {
                 // A surface container using the 'background' color from the theme
@@ -39,11 +43,10 @@ class MainActivity : ComponentActivity() {
                         Greeting("World!")
                         Button(onClick = {
                             // Replace with actual required postId
-                            getPost(postId = 1, onSuccess = { post ->
-                                println(post.toString() + "Post")
-                            }, onError = {
-                                println("Error ${it.localizedMessage}")
-                            })
+                            scope.launch {
+                                val post = getPost(postId = 1)
+                                println(post)
+                            }
 
                             startRegistration(context)
                         }) {
